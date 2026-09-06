@@ -2,6 +2,7 @@ import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { FolderOpen, Plus, FolderPlus } from 'lucide-react'
 import { useStore } from '../store/useStore'
 import { TreeView } from './TreeView'
+import { ThemeToggle } from './ThemeToggle'
 import { FileTreeNode } from '../types'
 import { invoke } from '@tauri-apps/api/core'
 import { promptForName } from '../lib/namePrompt'
@@ -131,10 +132,11 @@ export function Sidebar() {
       </ScrollArea>
 
       {/* Footer */}
-      <div className="sidebar-section p-3 border-t">
+      <div className="sidebar-section p-3 border-t flex items-center justify-between">
         <div className="sidebar-muted text-xs">
           {countFilesInTree(fileTree)} file{countFilesInTree(fileTree) !== 1 ? 's' : ''}
         </div>
+        <ThemeToggle />
       </div>
     </div>
   )

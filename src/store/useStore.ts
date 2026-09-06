@@ -37,6 +37,13 @@ function toOpenTab(
   }
 }
 
+function applyTheme(theme: Preferences['theme']): void {
+  const root = document.documentElement
+  const prefersDark = theme === 'dark' ||
+    (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  root.classList.toggle('dark', prefersDark)
+}
+
 function toExcalidrawFile(tab: OpenTab): ExcalidrawFile {
   return {
     name: tab.name,
@@ -150,6 +157,7 @@ interface AppStore {
   loadPreferences: () => Promise<void>
   savePreferences: () => Promise<void>
   toggleSidebar: () => void
+  setTheme: (theme: Preferences['theme']) => void
 }
 
 export const useStore = create<AppStore>((set, get) => ({
@@ -775,21 +783,8 @@ export const useStore = create<AppStore>((set, get) => ({
       }
 
       // Apply theme
-      const root = document.documentElement
-      if (safePrefs.theme === 'dark') {
-        root.classList.add('dark')
-      } else if (safePrefs.theme === 'light') {
-        root.classList.remove('dark')
-      } else {
-        // System theme
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        if (prefersDark) {
-          root.classList.add('dark')
-        } else {
-          root.classList.remove('dark')
-        }
-      }
-      
+      applyTheme(safePrefs.theme)
+
       // Auto-load last directory if it exists
       if (safePrefs.lastDirectory) {
         try {
@@ -829,6 +824,15 @@ export const useStore = create<AppStore>((set, get) => ({
     } catch (error) {
       console.error('Failed to save preferences:', error)
     }
+  },
+
+  // Set theme
+  setTheme: (theme) => {
+    const state = get()
+    applyTheme(theme)
+    const newPrefs = { ...state.preferences, theme }
+    set({ preferences: newPrefs })
+    state.savePreferences()
   },
 
   // Toggle sidebar

@@ -59,7 +59,7 @@
       "nanoid": "3.3.13"
     },
     "@excalidraw/mermaid-to-excalidraw": {
-      "@mermaid-js/parser": "1.1.1",
+      "@mermaid-js/parser": "1.2.1",
       "nanoid": "5.1.14"
     },
     "lodash-es": "4.18.1"

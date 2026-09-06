@@ -46,7 +46,7 @@
     "targets": ["app", "dmg"],
     "category": "GraphicsAndDesign",
     "shortDescription": "A local-first Excalidraw desktop editor.",
-    "longDescription": "ExcaliApp is a local-first desktop editor for creating, organizing, and editing Excalidraw files on your Mac.",
+    "longDescription": "ExcaliApp is a local-first desktop editor for creating, organizing, and editing Excalidraw files.",
     "copyright": "Copyright © 2026 ExcaliApp Contributors",
     "fileAssociations": [
       {
