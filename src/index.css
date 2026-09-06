@@ -132,6 +132,24 @@ html, body, #root {
   box-shadow: var(--app-shadow);
 }
 
+.theme-toggle {
+  background: var(--app-panel-strong);
+}
+
+.theme-toggle-option {
+  color: var(--app-text-muted);
+}
+
+.theme-toggle-option:hover {
+  color: var(--app-text);
+}
+
+.theme-toggle-option.active {
+  background: var(--app-surface);
+  color: var(--app-accent);
+  box-shadow: var(--app-shadow);
+}
+
 .tree-menu-item {
   color: var(--app-text);
 }
